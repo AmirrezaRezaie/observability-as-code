@@ -1,0 +1,41 @@
+{
+  "templates": {
+    "prometheus": {
+      "name": "Prometheus",
+      "type": "prometheus",
+      "access": "proxy",
+      "url": "http://localhost:9090",
+      "isDefault": false,
+      "jsonData": {
+        "timeInterval": "15s"
+      }
+    },
+    "influxdb": {
+      "name": "InfluxDB",
+      "type": "influxdb",
+      "access": "proxy",
+      "url": "http://localhost:8086",
+      "database": "telegraf",
+      "isDefault": false
+    },
+    "graphite": {
+      "name": "Graphite",
+      "type": "graphite",
+      "access": "proxy",
+      "url": "http://localhost:8080",
+      "isDefault": false
+    },
+    "elasticsearch": {
+      "name": "Elasticsearch",
+      "type": "elasticsearch",
+      "access": "proxy",
+      "url": "http://localhost:9200",
+      "database": "[logstash-]YYYY.MM.DD",
+      "isDefault": false,
+      "jsonData": {
+        "esVersion": "7.10.0",
+        "interval": "Daily"
+      }
+    }
+  }
+}

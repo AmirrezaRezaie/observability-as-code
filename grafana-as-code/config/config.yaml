@@ -1,0 +1,48 @@
+# Grafana Manager Configuration
+
+grafana:
+  url: ${GRAFANA_URL:http://localhost:3000}
+  api_key: ${GRAFANA_API_KEY}
+  timeout: 30
+
+# Default settings for new panels
+panel_defaults:
+  datasource_uid: "${DS_PROMETHEUS}"
+  grid_pos:
+    h: 8
+    w: 12
+    x: 0
+    y: 0
+  options:
+    legend:
+      displayMode: list
+      showLegend: true
+
+# Data source templates
+datasource_templates:
+  prometheus:
+    type: prometheus
+    access: proxy
+    isDefault: false
+
+  graphite:
+    type: graphite
+    access: proxy
+    isDefault: false
+
+# Common metrics library
+metrics_library:
+  cpu_usage:
+    title: "CPU Usage"
+    expr: "avg by (instance) (rate(cpu_usage_total[5m])) * 100"
+    legend_format: "{{instance}}"
+
+  memory_usage:
+    title: "Memory Usage"
+    expr: "memory_usage_percent"
+    legend_format: "{{host}}"
+
+  request_rate:
+    title: "Request Rate"
+    expr: "rate(http_requests_total[5m])"
+    legend_format: "{{method}} {{endpoint}}"
