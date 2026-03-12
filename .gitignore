@@ -147,5 +147,3 @@ backups/
 *.backup
 grafana-as-code/.env
 grafana-as-code/.python-version
-.DS_Store
-.DS_Store

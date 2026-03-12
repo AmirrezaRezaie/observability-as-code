@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "observability-as-code"
-version = "0.1.0"
+version = "2.0.0"
 description = "Automating observability tools with code: Grafana dashboards, alerts, and more"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -60,8 +60,7 @@ Issues = "https://github.com/AmirrezaRezaie/observability-as-code/issues"
 [tool.setuptools.packages.find]
 where = ["grafana-as-code"]
 
-[tool.setuptools.package-data]
-"grafana_as_code" = ["config/*.yaml", "config/*.json"]
+# Package data is not needed as config files are external to the package
 
 [tool.black]
 line-length = 100

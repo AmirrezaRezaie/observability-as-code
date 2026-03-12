@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-from src import GrafanaClient, Folder, Dashboard
+from . import GrafanaClient, Folder, Dashboard
 
 
 def cmd_list_folders(args):
