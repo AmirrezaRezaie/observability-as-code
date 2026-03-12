@@ -1,0 +1,101 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "observability-as-code"
+version = "0.1.0"
+description = "Automating observability tools with code: Grafana dashboards, alerts, and more"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Amirreza Rezaie", email = "82rezaeei@gmail.com"}
+]
+keywords = ["grafana", "observability", "monitoring", "dashboards", "infrastructure-as-code"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Monitoring",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.3",
+    "pytest-mock>=3.12.0",
+    "black>=23.12.0",
+    "mypy>=1.7.0",
+    "isort>=5.12.0",
+]
+
+prometheus = [
+    "prometheus-client>=0.19.0",
+]
+
+[project.scripts]
+grafana-cli = "grafana_as_code.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/AmirrezaRezaie/observability-as-code"
+Documentation = "https://github.com/AmirrezaRezaie/observability-as-code#readme"
+Repository = "https://github.com/AmirrezaRezaie/observability-as-code.git"
+Issues = "https://github.com/AmirrezaRezaie/observability-as-code/issues"
+
+[tool.setuptools.packages.find]
+where = ["grafana-as-code"]
+
+[tool.setuptools.package-data]
+"grafana_as_code" = ["config/*.yaml", "config/*.json"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["grafana-as-code/tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"

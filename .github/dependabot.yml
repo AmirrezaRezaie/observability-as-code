@@ -1,0 +1,22 @@
+version: 2
+updates:
+  # GitHub Actions
+  - directory: /
+    package-ecosystem: "github-actions"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  # Python dependencies
+  - directory: "/grafana-as-code"
+    package-ecosystem: "pip"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+    ignore:
+      # Ignore updates for these dependencies (optional)
+      - dependency-name: "requests"
+        update-types: ["version-update:semver-major"]
